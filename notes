@@ -1,0 +1,9 @@
+# venv/bin/python -m pip install -e git+https://github.com/huggingface/transformers@master#egg=transformers
+from transformers import GPTNeoForCausalLM
+# venv/bin/python -m pip install --upgrade -e git+https://github.com/pytorch/pytorch@master#egg=torch
+# need to use torch v1.9.0dev for CUDA 11.2 compatability and GPT-NEO
+
+
+eth-tester is linux only, would need to run something like ganache for this to work on windows
+
+Aion (under Ether Pantheon) is a scheduler for the Ethereum blockchain
