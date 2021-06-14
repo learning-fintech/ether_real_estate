@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: ether-real-estate
-Version: 1.0
+Version: 1.1
 Summary: This package simulates commercial real estate transactions over the Ethereum blockchain.
 Home-page: https://github.com/learning-fintech/Ether_Real_Estate
 Author: James Nordlund
@@ -23,7 +23,7 @@ Requires-Python: >=3.6, <4
 Description-Content-Type: text/markdown
 License-File: LICENSE
 
-# *etheR*eal Estate
+# The `ether_real_estate` Package
 
 This package simulates commercial real estate transactions over the Ethereum blockchain.
 

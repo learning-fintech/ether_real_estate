@@ -42,7 +42,7 @@ class Firm:
         self.address = building_address
 
     def get_stats(self):
-        return [self.name, self.industry]
+        return [self.name, self.industry, self.size]
 
     def increment_cash(self, industry_shocks):
         cf = np.random.normal(self.mu, self.sigma) + sum([self.prior_cf[j]*self.ma_params[j]

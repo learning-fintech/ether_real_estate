@@ -165,8 +165,8 @@ class Game:
             if self.verbose:
                 print('Starting deposit transactions:', self.bank.get_all_filter_logs(filter_id))
             self.bank.delete_filter(filter_id)
-            self.ai = [i for i in range(num_players,num_players+num_ai)]
-            # flag whether to run the game on autopilot
+            self.ai = [i for i in range(num_players, num_players+num_ai)] # flag whether to run the game on autopilot
+            self.get_stats()
             self.save_game()
 
     def get_balance(self, account):
@@ -194,7 +194,8 @@ class Game:
 
     def get_building_stats(self):
         stats = {building: building.get_stats() for building in self.buildings}
-        df = pd.DataFrame(columns=['building', 'size', 'firm', 'industry', 'rent', 'maturity', 'cash_holdings'])
+        df = pd.DataFrame(columns=['building', 'size', 'firm', 'industry', 'firm_size', 'rent', 'maturity',
+                                   'cash_holdings'])
         for building, data in stats.items():
             for firm_data in data:
                 wallet = firm_data.pop()
@@ -202,7 +203,7 @@ class Game:
         df.to_csv(self.path + '/stats/' + str(self.period) + '/buildings.csv', index=False)
 
     def get_unassigned_firm_stats(self):
-        df = pd.DataFrame(columns=['firm', 'industry', 'cash_holdings'])
+        df = pd.DataFrame(columns=['firm', 'industry', 'firm_size', 'cash_holdings'])
         for firm in self.firms:
             if firm.address is not None:
                 continue
@@ -468,6 +469,7 @@ class Game:
             os.mkdir(self.path + '/firm_bids/' + str(self.period))
             os.mkdir(self.path + '/stats/' + str(self.period))
             os.mkdir(self.path + '/blocks/' + str(self.period))
+            self.get_stats()
 
     def save_game(self):
         if self.verbose:
@@ -514,7 +516,6 @@ def sample_ai_game(n=5, num_periods=10):
     g = Game(num_players=0, num_ai=n, verbose=True)
 
     print('Initial building allocation to players')
-    g.get_stats()
     g.get_building_bids()
     g.get_firm_bids()
 
@@ -528,6 +529,5 @@ def sample_ai_game(n=5, num_periods=10):
         last_period = t == num_periods - 1
         g.increment_game(last_period=last_period)
         if not last_period:
-            g.get_stats()
             g.get_building_bids()
             g.get_firm_bids()

@@ -11,7 +11,7 @@ long_description = (here / 'README.md').read_text(encoding='utf-8')
 
 setup(
     name='ether_real_estate',  # Required
-    version='1.0',  # Required
+    version='1.1',  # Required
     description='This package simulates commercial real estate transactions over the Ethereum blockchain.',  # Optional
     long_description=long_description,  # Optional
     long_description_content_type='text/markdown',  # Optional
@@ -73,7 +73,8 @@ setup(
     #
     # For an analysis of "install_requires" vs pip's requirements files see:
     # https://packaging.python.org/en/latest/requirements.html
-    install_requires=['numpy', 'pandas', 'eth_utils', 'eth_tester'],  # Optional
+    install_requires=['numpy', 'pandas', 'eth_utils', 'eth_tester==0.5.0b4',
+                      'eth-hash==0.3.1', 'eth-hash[pycryptodome]', 'py-evm==0.4.0a4'],  # Optional
 
     # List additional groups of dependencies here (e.g. development
     # dependencies). Users will be able to install these using the "extras"
